@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert HexaToRGBA</title>
+    <style>
+       p{
+            padding: 5px;
+            width: fit-content;
+            color: aliceblue;
+            border-radius: 50px;
+        }
+        input[type="color"]{
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <label>Pick the color</label><br>
+        <input type="color" name="colorCode" id="colorCode" onchange="getMeColorName()">
+        <p id="rgbaValue"></p>
+        <p id="rgba"></p>
+    </center>
+    <script>
+
+        function hexToRgba(hex, opacity) {
+        hex = hex.replace('#', '');
+        var r = parseInt(hex.substring(0,2), 16);
+        var g = parseInt(hex.substring(2,4), 16);
+        var b = parseInt(hex.substring(4,6), 16);
+        return 'RGBA Color Code : [ ' + r + ', ' + g + ', ' + b + ', ' + opacity+' ]' ;
+        }
+
+        function getMeColorName(){
+            var colorName = document.getElementById('colorCode').value;
+            document.getElementById('rgbaValue').innerText='Hexa Color Code : '+colorName;
+            var rgbaColor = hexToRgba(colorName, 0.5);
+            document.getElementById('rgba').innerText=rgbaColor;
+            var allPs = document.querySelectorAll('p');
+            for (var i = 0; i < allPs.length; i++) {
+                allPs[i].style.backgroundColor = colorName;
+                }
+        }
+
+
+    </script>
+</body>
+</html>
